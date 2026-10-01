@@ -1,0 +1,27 @@
+Comandos usados para la practica:
+Para este archivo he usado nano con el cual usare ctrl+o -> enter -> ctrl+x para guardarlo.
+1.- Compilar el código:
+javac -d ./classes ./src/*.java
+2.- Generar la documentación:
+javadoc -d ./doc -author -version -private -linksource ./src/*.java
+3.- Ejecutar la clase MainTicTacToe
+java -classpath ./classes MainTicTacToe
+4.- Incluir todas las clases en el paquete es.unileon.prg1.ticTacToe:
+mkdir -p ./src/es/unileon/prg1/ticTacToe
+mv ./src/*.java ./src/es/unileon/prg1/ticTacToe/ 
+#no me molesto 1 a 1 si uso *.java cuando quiero moverlo todo en vez de ser selectivo.
+5.- Compilar desde el directorio de trabajo:
+#antes tenemos que cambiar en todos los archivos el package asi que vamos 1 por 1 cambiando al principio del todo añadiendo package es.unileon.prg1.ticTacToe;
+javac -d ./classes ./src/es/unileon/prg1/TicTacToe/*.java
+6.- Generar la documentación desde el directorio de trabajo:
+javadoc -d ./doc -author -version -private -linksource ./src/es/unileon/prg1/TicTacToe/*.java
+7.- Ejecutar desde el directorio de trabajo:
+java -classpath ./classes es.unileon.prg1.ticTacToe.MainTicTacToe
+8.- Incluir las imágenes dentro del directorio etc/images y volver a ejecutar la aplicación:
+mkdir -p ./etc/images
+mv ./src/*.png ./src/es/unileon/prg1/TicTacToe/etc/images/
+9.- Crear un fichero llamado leeme.txt en el directorio de trabajo que incluya los comandos utilizados para cada una de las tareas anteriores: compilar, generar la documentación y ejecutar la aplicación:
+touch leeme.txt
+nano leeme.txt
+
+#estuve un rato haciendolo y la lie haciendo los documentos machacando los del principio y por no repetir todo el proceso de 0 lo dejare asi ya que se que hacer para la proxima.

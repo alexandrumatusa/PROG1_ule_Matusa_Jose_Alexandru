@@ -1,0 +1,52 @@
+#nombre del archivo total
+<project name="Ejemplo" basedir="." default="todo">
+
+#qui se declaran todas las etiquetas que se usaran
+<property name="src" value="src"/>
+<property name="lib" value="lib"/>
+<property name="classes" value="classes"/>
+<property name="dist" value="dist"/>
+<property name="doc" value="doc"/>
+<property name="conf" value="etc"/>
+<property name="paquetes" value="es.unileon.prg1.bar.*"/>
+<property name="titulo" value="Un ejemplo completo"/>
+
+#aqui usamos esto para borrar los archivos antiguos antes de compilar los nuevos
+<target name="limpiar">
+<delete dir="${classes}"/>
+<delete dir="${doc}"/>
+<delete dir="${dist}"/>
+<delete file="${conf}/log.txt"/>
+</target>
+
+#antes de ejecutar "compilar" hacemos "limpiar" y despues srcdir y destdir
+<target name="compilar" depends="limpiar">
+<mkdir dir="${conf}"/>
+<mkdir dir="${classes}"/>
+<javac srcdir="${src}" destdir="${classes}" classpath="${lib}"
+verbose="true" debug="true"/>
+<echo message="Compilacion terminada"
+file="${conf}/log.txt"/>
+
+#para generar la documentacion con javadoc
+<target name="documentar">
+<mkdir dir="${doc}"/>
+<javadoc sourcepath="${src}" classpath="${lib}"
+destdir="${doc}"
+packagenames="${paquetes}"
+verbose="true" author="true"
+access="private" splitindex="true" version="true"
+windowtitle="${titulo}" doctitle="${titulo}"/>
+</target>
+
+#para terminar java comprobando el javac previo
+<target name="distribuir" depends="compilar">
+<mkdir dir="${dist}"/>
+<jar jarfile="${dist}/bar.jar" basedir="${classes}"
+compress="true"/>
+<copy file="LEEME.txt" todir="${src}"/>
+<zip zipfile="${dist}/bar_src.jar" basedir="${src}"
+compress="true"/>
+</target>
+<target name="todo" depends="compilar, documentar, distribuir"/>
+</project>
